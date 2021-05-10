@@ -8,16 +8,85 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Header = function (_React$Component) {
-    _inherits(Header, _React$Component);
+var appRoot = document.getElementById("app");
+var count = 0;
 
-    function Header() {
-        _classCallCheck(this, Header);
+var CounterApp = function (_React$Component) {
+    _inherits(CounterApp, _React$Component);
 
-        return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
+    function CounterApp(props) {
+        _classCallCheck(this, CounterApp);
+
+        var _this = _possibleConstructorReturn(this, (CounterApp.__proto__ || Object.getPrototypeOf(CounterApp)).call(this, props));
+
+        _this.addOne = _this.addOne.bind(_this);
+        _this.subtractOne = _this.subtractOne.bind(_this);
+        _this.reset = _this.reset.bind(_this);
+        _this.state = {
+            count: 0
+        };
+        return _this;
     }
 
-    _createClass(Header, [{
+    // Lifecycle Methods
+    // We will use these methods to store/fetch options data from localStorage (browser storage)
+
+
+    _createClass(CounterApp, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            try {
+                var countString = localStorage.getItem('count');
+                var _count = parseInt(countString, 10);
+                if (!isNaN(_count)) {
+                    this.setState(function () {
+                        return { count: _count };
+                    });
+                }
+            } catch (e) {
+                // Do Nothing
+            }
+        }
+    }, {
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate(prevProps, prevState) {
+            if (prevState.count !== this.state.count) {
+                localStorage.setItem('count', this.state.count);
+            }
+        }
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            console.log('componentWillUnmount!!');
+        }
+    }, {
+        key: 'addOne',
+        value: function addOne() {
+            this.setState(function (prevState) {
+                return {
+                    count: prevState.count + 1
+                };
+            });
+        }
+    }, {
+        key: 'subtractOne',
+        value: function subtractOne() {
+            this.setState(function (prevState) {
+                return {
+                    count: prevState.count - 1
+                };
+            });
+        }
+    }, {
+        key: 'reset',
+        value: function reset() {
+            this.setState(function () {
+                return {
+                    count: 0
+                };
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
             return React.createElement(
@@ -26,79 +95,57 @@ var Header = function (_React$Component) {
                 React.createElement(
                     'h1',
                     null,
-                    'Indecision'
+                    'Counter : ',
+                    this.state.count
                 ),
                 React.createElement(
-                    'p',
-                    null,
-                    'this is my app'
+                    'button',
+                    { onClick: this.addOne },
+                    '+1'
+                ),
+                React.createElement(
+                    'button',
+                    { onClick: this.subtractOne },
+                    '-1'
+                ),
+                React.createElement(
+                    'button',
+                    { onClick: this.reset },
+                    'reset'
                 )
             );
         }
     }]);
 
-    return Header;
+    return CounterApp;
 }(React.Component);
 
-var Actions = function (_React$Component2) {
-    _inherits(Actions, _React$Component2);
+ReactDOM.render(React.createElement(CounterApp, null), appRoot);
+/*
+let count = 0;
+const addOne = () => {
+    count++;
+    renderCounter();
+}
+const subtractOne = () => {
+    count--;
+    renderCounter();
+}
+const reset = () => {
+    count = 0;
+    renderCounter();
+}
 
-    function Actions() {
-        _classCallCheck(this, Actions);
+const renderCounter = () => {
+    const template2 = 
+    <div>
+        <h1>Count: {count}</h1>
+        <button onClick={addOne}>+1</button>
+        <button onClick={subtractOne}>-1</button>
+        <button onClick={reset}>reset</button>
+    </div>
+    
+    ReactDOM.render(template2, appRoot);
+}
 
-        return _possibleConstructorReturn(this, (Actions.__proto__ || Object.getPrototypeOf(Actions)).apply(this, arguments));
-    }
-
-    _createClass(Actions, [{
-        key: 'render',
-        value: function render() {
-            return React.createElement(
-                'button',
-                null,
-                'What are my options'
-            );
-        }
-    }]);
-
-    return Actions;
-}(React.Component);
-
-var Options = function (_React$Component3) {
-    _inherits(Options, _React$Component3);
-
-    function Options() {
-        _classCallCheck(this, Options);
-
-        return _possibleConstructorReturn(this, (Options.__proto__ || Object.getPrototypeOf(Options)).apply(this, arguments));
-    }
-
-    _createClass(Options, [{
-        key: 'render',
-        value: function render() {
-            return React.createElement(
-                'ol',
-                null,
-                React.createElement(
-                    'li',
-                    null,
-                    'Item 1'
-                ),
-                React.createElement(
-                    'li',
-                    null,
-                    'Item 2'
-                )
-            );
-        }
-    }]);
-
-    return Options;
-}(React.Component);
-
-var jsx = React.createElement(
-    'div',
-    null,
-    React.createElement(Header, null)
-);
-
-ReactDOM.render(jsx, document.getElementById('app'));
+renderCounter();*/
