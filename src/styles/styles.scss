@@ -1,0 +1,7 @@
+// import construct when dealing with scss has slightly different meaning and syntax
+// we dont use the `_` prefix while importing a scss
+// the base variable defining settings should come before the calling files
+@import "./base/settings";
+@import "./base/base";
+@import "./components/header";
+@import "./components/container";

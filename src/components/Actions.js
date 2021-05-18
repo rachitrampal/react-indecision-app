@@ -1,7 +1,12 @@
 import React from "react";
 
 const Actions = (props) => {
-    return <button disabled={!props.hasOptions}>What are my options</button>
+    return <button
+             onClick={props.handlePick}
+             disabled={!props.hasOptions}
+            >
+            What are my options
+            </button>
 }
 
 export default Actions;

@@ -97,3 +97,58 @@ Can we used for both class-based and functional components.
 `Lifecycle Methods` are the list of methods that be used by class based components only.
 For-example componentDidMount(), componentWillUnmount(), componentDidUpdate()
 For more info explore https://reactjs.org/docs/react-component.html
+
+## Using Webpack
+Webpack is a tool which can bundle up all the dependencies of the react app for example React and ReactDOM package, 
+babel dependencies, dev server(appose to the live-server) and compile them to a single bundled js file 
+which can be deployed and runs the app.
+https://v4.webpack.js.org/configuration/
+https://babeljs.io/docs/en/plugins
+https://www.npmjs.com/package/babel-preset-env
+https://www.npmjs.com/package/babel-preset-react
+https://www.npmjs.com/package/babel-loader/v/8.0.0-beta.1
+https://www.npmjs.com/package/babel-plugin-transform-class-properties
+
+Few steps to follow for setting up the webpack
+1. Create webpack.config.js for webpack to understand the app.
+2. Use React and ReactDOM npm packages and import/export these modules to your app.
+3. Use babel presets and plugins by setting them up in .babelrc.
+
+
+We can use `props.children` to pass JSX directly to a react component
+```
+const Layout = () => {
+    return (
+        <div>
+            <p>This is stateless functional react component</p>
+            {props.children} // this will render the p tag in render function
+        </div>)
+}
+
+ReactDOM.render(<Layout><p>Child paragraph</p></Layout>, document.getElementById('appRoot'))
+```
+### Using React-Modal
+React-Modal is a third-party tool that can we contains jsx modals which can be used in the app
+For more details : http://reactcommunity.org/react-modal/
+
+### Styling React
+
+We will be using SCSS and configure it in webpack to render the styles of the app.
+
+Configuring styles in webpack is similar to configuring Babel. We will set the rules for
+CSS in the module property of webpack.
+
+partial css or scss starts with `_` as a file naming standard
+
+Styles Reset - this is necessary for starting your styles from the same point on across all browsers and protect
+default browser styles to fiddle with your custom styles. Therefore we should have styles reset in place.
+There are many packages that implies reset. like Normalize.css
+
+#### Packages for Styles 
+1. `css-loader` npm package will allow webpack to load css
+2. `style-loader` it injects CSS to the DOM in `<style>` tags
+
+In Order to execute SCSS we would be using the `sass` packages which will understand SCSS
+and compile it as normal CSS for the app running the browser.
+1. `sass-loader` this package is used to load sass in the webpack
+2. `node-sass` package is used understand scss and convert it to normal css

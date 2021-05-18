@@ -1,0 +1,23 @@
+// defining a class has prefix '.' followed by className
+//  in padding 1.6 rem is the space up and down between text and border and 0 denotes space left and right
+// now we can specify styles of JSX element lets say h1 inside the class but this will cost in performance due to nesting
+// and might lead lead JS callback hell. So, Instead we will define it outside the class called class selector
+.header {
+  background: $off-black;
+  color: white;
+  margin-bottom: $xl-size;
+  padding: 1.6rem 0;
+}
+
+// `__` is a naming convention called BEM - Block Element Modifier
+.header__title {
+  font-size: $l-size;
+  margin: 0;
+}
+
+.header__subtitle {
+  color: $off-white;
+  font-size: $m-size;
+  font-weight: 500;
+  margin: 0;
+}

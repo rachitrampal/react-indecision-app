@@ -1,0 +1,13 @@
+// we use `rem` unit instead of `px` because they are useful for accessibility features
+// 1 rem = 16 px
+// As its not an easy conversion of rem to px we set a base of html to 62.5% of 1 rem which means 10px
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background: $dark-blue;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: $m-size;
+}
