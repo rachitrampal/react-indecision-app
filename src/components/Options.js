@@ -5,8 +5,16 @@ const Options = (props) => {
     const options = props.options;
     return (
         <div>
-            <button onClick={props.removeAllOptions}>Remove All Options</button>
-            {!options.length && <p>Please add an option!</p>}
+            <div className="widget_header">
+                <h3 className="widget_header__title">Your Options</h3>
+                <button
+                    className="button button--link"
+                    onClick={props.removeAllOptions}
+                >
+                    Remove All
+                </button>
+            </div>
+            {!options.length && <p className="widget__message">Please add an option!</p>}
             <ol>{
                 options.map((opt, index) => {
                     return <Option

@@ -152,3 +152,6 @@ In Order to execute SCSS we would be using the `sass` packages which will unders
 and compile it as normal CSS for the app running the browser.
 1. `sass-loader` this package is used to load sass in the webpack
 2. `node-sass` package is used understand scss and convert it to normal css
+
+`Viewport` is set as meta in html file for the app content to adjust on different mobile devices
+

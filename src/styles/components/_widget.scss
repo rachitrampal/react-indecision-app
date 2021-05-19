@@ -1,0 +1,33 @@
+.widget {
+  background: $light-blue;
+  margin-bottom: $xl-size;
+}
+
+// BEM - element selector for widget message
+.widget__message {
+  color: $off-white;
+  font-weight: 500;
+  font-size: $l-size;
+  margin: 0;
+  padding: $l-size;
+  text-align: center;
+  border-bottom: 1px solid lighten($light-blue, 10%);
+}
+
+.widget_form {
+
+}
+
+
+.widget_header {
+  background: $blue;
+  color: $off-white;
+  // to show the content in a line from left to right we use display
+  display: flex;
+  justify-content: space-between;
+  padding: $m-size;
+}
+
+.widget_header__title {
+  margin: 0;
+}
